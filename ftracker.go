@@ -103,7 +103,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	// ваш код здесь
 	speedInSec := meanSpeed(action, duration) * kmhInMsec //скорость в метрах в секунду.
 
-	return ((walkingCaloriesWeightMultiplier*weight + (math.Pow(speedInSec, 2)/height)*walkingSpeedHeightMultiplier*height) * duration * minInH)
+	return ((walkingCaloriesWeightMultiplier*weight + (math.Pow(speedInSec, 2)/height)*walkingSpeedHeightMultiplier*weight) * duration * float64(minInH))
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
