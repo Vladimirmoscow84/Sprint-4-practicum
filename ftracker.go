@@ -103,6 +103,7 @@ func WalkingSpentCalories(action int, duration, weight, height float64) float64 
 	// ваш код здесь
 	fmt.Printf("action: %v, duration: %.2f, weight: %.2f, height: %.2f\n", action, duration, weight, height)
 	speedInSec := meanSpeed(action, duration) * kmhInMsec //скорость в метрах в секунду.
+	height = height / 100
 	fmt.Printf("speedInSec: %.2f\n", speedInSec)
 	k1 := walkingCaloriesWeightMultiplier * weight
 	k2 := math.Pow(speedInSec, 2) / height
