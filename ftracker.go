@@ -2,6 +2,7 @@ package ftracker
 
 import (
 	"fmt"
+	"math"
 )
 
 // Основные константы, необходимые для расчетов.
@@ -100,8 +101,15 @@ const (
 // height float64 — рост пользователя.
 func WalkingSpentCalories(action int, duration, weight, height float64) float64 {
 	// ваш код здесь
+	fmt.Printf("action: %v, duration: %.2f, weight: %.2f, height: %.2f\n", action, duration, weight, height)
 	speedInSec := meanSpeed(action, duration) * kmhInMsec //скорость в метрах в секунду.
-	return (walkingCaloriesWeightMultiplier*weight + ((speedInSec*speedInSec)/height)*walkingSpeedHeightMultiplier*weight) * duration * minInH
+	fmt.Printf("speedInSec: %.2f\n", speedInSec)
+	k1 := walkingCaloriesWeightMultiplier * weight
+	k2 := math.Pow(speedInSec, 2) / height
+	k3 := (k2) * walkingSpeedHeightMultiplier * weight
+	c := (k1 + k3) * duration * minInH
+	fmt.Printf("k1: %.2f, k2: %.2f, k3: %.2f, c: %.2f\n", k1, k2, k3, c)
+	return c
 }
 
 // Константы для расчета калорий, расходуемых при плавании.
